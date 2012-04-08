@@ -36,7 +36,7 @@ class Interface(object):
         title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=color)
         title.pack()
         self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/kiss.jpg"))
-        self.image_label = Label(frame, image=self.tkimg)
+        self.image_label = Label(frame, image=self.tkimg, width=400, height=300, bg=color)
         self.image_label.pack()
         self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=color)
         self.word_label.pack()
