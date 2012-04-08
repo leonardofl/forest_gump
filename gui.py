@@ -21,29 +21,31 @@ from threading import Timer
 from PIL import Image, ImageTk
 
 from image_retriever import get_image
+from round import Round
 
-class Interface(object):
+COLOR = 'light salmon'
+
+class RoundInterface(object):
 
     def __init__(self):
 
-        color = 'light salmon'
         self.clock = 0
         self.clocking = False
 
-        self.root = Tk()
-        frame = Frame(self.root, bg=color)
+        self.root = Toplevel()
+        self.root.title("Forest Gump")
+        frame = Frame(self.root, bg=COLOR)
         frame.pack()
-        title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=color)
+        title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=COLOR)
         title.pack()
         self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/kiss.jpg"))
-        self.image_label = Label(frame, image=self.tkimg, width=400, height=300, bg=color)
+        self.image_label = Label(frame, image=self.tkimg, width=400, height=300, bg=COLOR)
         self.image_label.pack()
-        self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=color)
+        self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=COLOR)
         self.word_label.pack()
-        self.clock_label = Label(frame, text=self.clock, font=('times', 70, 'bold'), bg=color)
+        self.clock_label = Label(frame, text=self.clock, font=('times', 70, 'bold'), bg=COLOR)
         self.clock_label.pack()
 
-        
     def start(self):
         self.root.mainloop()
 
@@ -74,9 +76,45 @@ class Interface(object):
         self.image_label.configure(image=self.tkimg)
         self.stop_clock()
 
+class Interface(object):
+
+    def __init__(self):
+
+        self.root = Tk()
+        self.root.title("Forest Gump")
+        master_frame = Frame(self.root, bg=COLOR)
+        master_frame.pack()
+        title = Label(master_frame, text="Forest Gump, o contador de histórias", font=('times', 30, 'bold'), bg=COLOR)
+        title.pack(side=TOP)
+        left_frame = Frame(master_frame, bg=COLOR, border=10)
+        left_frame.pack(side=LEFT)
+        right_frame = Frame(master_frame, bg=COLOR)
+        right_frame.pack(side=RIGHT)
+
+        self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/uncle_sam.jpg"))
+        image_label = Label(right_frame, image=self.tkimg, width=400, height=300, bg=COLOR)
+        image_label.pack()
+
+        names_label = Label(left_frame, text="Jogadores (um por linha):", font=('times', 12), bg=COLOR, border=5)
+        names_label.pack()
+        name_text = Text(left_frame, height=10, width=40, border=5)
+        name_text.pack()
+        button_frame = Frame(left_frame, border=5, bg=COLOR)
+        button_frame.pack()
+        name_button = Button(button_frame, text="Inicia rodada", command=self.start_round)
+        name_button.pack()
+
+    def start(self):
+        self.root.mainloop()
+
+    def start_round(self):
+        interface = RoundInterface()
+        round = Round(5, 2, interface)
+        round.start()        
+
 if __name__ == "__main__":
 
-    gui = Interface()
+    gui = RoundInterface()
     gui.start()
 
 
