@@ -16,26 +16,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-from Tkinter import *
-
-class Interface(object):
-
-    def __init__(self):
-        self.root = Tk()
-        title = Label(self.root, text="Forest Gump, o contador de histórias")
-        title.pack()
-        self.word = Label(self.root, text="Let's rock")
-        self.word.pack()
-
-    def start(self):
-        self.root.mainloop()
-
-    def print_word(self, word):
-        self.word.configure(text=word)
+import gui
+import round
 
 if __name__ == "__main__":
 
-    gui = Interface()
-    gui.start()
-
-
+    interface = gui.Interface()
+    round = round.Round(10, 2, interface)
+    round.start()
+    interface.start()

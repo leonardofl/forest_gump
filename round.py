@@ -18,13 +18,15 @@
 
 import words
 import sched
-from threading import Timer
+import gui
+from threading import Timer, Thread
 
 class Round(object):
 
-    def __init__(self, max_palavras, interval):
+    def __init__(self, max_palavras, interval, interface):
         self.max_palavras = max_palavras # quantas palavras por rodada
         self.interval = interval # quantos segundos por palavra
+        self.interface = interface # interface gráfica
         self.words = words.Words()
         self.count = 0
 
@@ -32,7 +34,8 @@ class Round(object):
         Timer(self.interval, self.refresh, ()).start()
 
     def refresh(self):
-        print self.words.next()
+        word = self.words.next() 
+        self.interface.print_word(word)
         self.count += 1
         if (self.count < self.max_palavras):
            Timer(self.interval, self.refresh, ()).start() 
