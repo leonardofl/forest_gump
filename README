@@ -6,3 +6,8 @@ e a pessoa tem que narrar uma história (engraçada) usando as palavras.
 O contador da história tem que usar cada palavra em um pequeno limite tempo (2 segundos, por ex).
 
 O jogo não precisa ter pontuação, é mais uma brincadeira mesmo :)
+
+Jogadores podem adicionar novas palavras no arquivo resources/words
+e novas imagens na pasta resources/img
+O nome da imagem deve corresponder à palavra, mas com "_" no lugar de " ", mantendo-se os acentos
+A resolução da imagem não deve exceder 400 na largura ou 300 na altura
