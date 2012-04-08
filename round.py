@@ -18,7 +18,6 @@
 
 import words
 import sched
-import time
 from threading import Timer
 
 class Round(object):

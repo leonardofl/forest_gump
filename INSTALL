@@ -1,0 +1,4 @@
+Libs necessárias:
+
+*   Tkinter
+    No Ubuntu ela pode ser instalada com "apt-get install python-tk"
