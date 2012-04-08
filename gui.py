@@ -20,6 +20,8 @@ from Tkinter import *
 from threading import Timer
 from PIL import Image, ImageTk
 
+from image_retriever import get_image
+
 class Interface(object):
 
     def __init__(self):
@@ -33,8 +35,7 @@ class Interface(object):
         frame.pack()
         title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=color)
         title.pack()
-        img = Image.open("resources/img/python.png")
-        self.tkimg = ImageTk.PhotoImage(img)
+        self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/kiss.jpg"))
         self.image_label = Label(frame, image=self.tkimg)
         self.image_label.pack()
         self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=color)
@@ -61,6 +62,17 @@ class Interface(object):
 
     def print_word(self, word):
         self.word_label.configure(text=word)
+        img_path = get_image(word)        
+        if not img_path:
+            img_path = "resources/img/nothing.png"
+        self.tkimg = ImageTk.PhotoImage(Image.open(img_path))
+        self.image_label.configure(image=self.tkimg)
+
+    def stop(self):
+        self.word_label.configure(text="ACABOU!")
+        self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/stop.jpg"))
+        self.image_label.configure(image=self.tkimg)
+        self.stop_clock()
 
 if __name__ == "__main__":
 

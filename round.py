@@ -45,8 +45,7 @@ class Round(object):
            Timer(self.interval, self.finish, ()).start() 
 
     def finish(self):
-        self.interface.print_word("ACABOU!")
-        self.interface.stop_clock()
+        self.interface.stop()
 
 if __name__ == "__main__":
     
