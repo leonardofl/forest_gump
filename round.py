@@ -31,7 +31,7 @@ class Round(object):
         self.count = 0
 
     def start(self):
-        self.interface.start_clock()
+        Timer(self.interval, self.interface.start_clock, ()).start()
         Timer(self.interval, self.refresh, ()).start()
         self.interface.start()
 

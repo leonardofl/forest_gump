@@ -23,13 +23,16 @@ class Interface(object):
 
     def __init__(self):
         self.root = Tk()
-        title = Label(self.root, text="Forest Gump, o contador de histórias")
+        color = 'light salmon'
+        frame = Frame(self.root, bg=color)
+        frame.pack()
+        title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=color)
         title.pack()
         self.clock = 0
         self.clocking = False
-        self.word_label = Label(self.root, text="Let's rock")
+        self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=color)
         self.word_label.pack()
-        self.clock_label = Label(self.root, text=self.clock)
+        self.clock_label = Label(frame, text=self.clock, font=('times', 70, 'bold'), bg=color)
         self.clock_label.pack()
         
     def start(self):

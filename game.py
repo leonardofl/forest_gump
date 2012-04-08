@@ -22,5 +22,5 @@ import round
 if __name__ == "__main__":
 
     interface = gui.Interface()
-    round = round.Round(10, 2, interface)
+    round = round.Round(5, 2, interface)
     round.start()
