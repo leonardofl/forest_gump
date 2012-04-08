@@ -17,6 +17,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from Tkinter import *
+from threading import Timer
 
 class Interface(object):
 
@@ -24,14 +25,31 @@ class Interface(object):
         self.root = Tk()
         title = Label(self.root, text="Forest Gump, o contador de histórias")
         title.pack()
-        self.word = Label(self.root, text="Let's rock")
-        self.word.pack()
-
+        self.clock = 0
+        self.clocking = False
+        self.word_label = Label(self.root, text="Let's rock")
+        self.word_label.pack()
+        self.clock_label = Label(self.root, text=self.clock)
+        self.clock_label.pack()
+        
     def start(self):
         self.root.mainloop()
 
+    def start_clock(self):
+        self.clocking = True
+        self.__clock()
+
+    def __clock(self):
+        self.clock += 1
+        self.clock_label.configure(text=self.clock)
+        if (self.clocking):
+            Timer(1, self.__clock, ()).start()
+
+    def stop_clock(self):
+        self.clocking = False
+
     def print_word(self, word):
-        self.word.configure(text=word)
+        self.word_label.configure(text=word)
 
 if __name__ == "__main__":
 

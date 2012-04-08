@@ -24,4 +24,3 @@ if __name__ == "__main__":
     interface = gui.Interface()
     round = round.Round(10, 2, interface)
     round.start()
-    interface.start()

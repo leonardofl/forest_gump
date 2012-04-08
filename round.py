@@ -31,7 +31,9 @@ class Round(object):
         self.count = 0
 
     def start(self):
+        self.interface.start_clock()
         Timer(self.interval, self.refresh, ()).start()
+        self.interface.start()
 
     def refresh(self):
         word = self.words.next() 
@@ -43,7 +45,8 @@ class Round(object):
            Timer(self.interval, self.finish, ()).start() 
 
     def finish(self):
-        print 'ACABOU!'
+        self.interface.print_word("ACABOU!")
+        self.interface.stop_clock()
 
 if __name__ == "__main__":
     
