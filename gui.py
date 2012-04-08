@@ -18,22 +18,30 @@
 
 from Tkinter import *
 from threading import Timer
+from PIL import Image, ImageTk
 
 class Interface(object):
 
     def __init__(self):
-        self.root = Tk()
+
         color = 'light salmon'
+        self.clock = 0
+        self.clocking = False
+
+        self.root = Tk()
         frame = Frame(self.root, bg=color)
         frame.pack()
         title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=color)
         title.pack()
-        self.clock = 0
-        self.clocking = False
+        img = Image.open("resources/img/python.png")
+        self.tkimg = ImageTk.PhotoImage(img)
+        self.image_label = Label(frame, image=self.tkimg)
+        self.image_label.pack()
         self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=color)
         self.word_label.pack()
         self.clock_label = Label(frame, text=self.clock, font=('times', 70, 'bold'), bg=color)
         self.clock_label.pack()
+
         
     def start(self):
         self.root.mainloop()
