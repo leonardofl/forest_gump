@@ -23,11 +23,12 @@ from threading import Timer, Thread
 
 class Round(object):
 
-    def __init__(self, max_palavras, interval, interface):
+    def __init__(self, max_palavras, interval, names, interface):
         self.max_palavras = max_palavras # quantas palavras por rodada
         self.interval = interval # quantos segundos por palavra
+        self.names = names # nomes dos jogadores
         self.interface = interface # interface gráfica
-        self.words = words.Words()
+        self.words = words.Words(names, max_palavras)
         self.count = 0
 
     def start(self):

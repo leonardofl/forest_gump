@@ -27,10 +27,11 @@ COLOR = 'light salmon'
 
 class RoundInterface(object):
 
-    def __init__(self):
+    def __init__(self, names):
 
         self.clock = 0
         self.clocking = False
+        self.names = names
 
         self.root = Toplevel()
         self.root.title("Forest Gump")
@@ -67,6 +68,8 @@ class RoundInterface(object):
         img_path = get_image(word)        
         if not img_path:
             img_path = "resources/img/nothing.png"
+        if word in self.names:
+            img_path = "resources/img/avatar.png"
         self.tkimg = ImageTk.PhotoImage(Image.open(img_path))
         self.image_label.configure(image=self.tkimg)
 
@@ -97,8 +100,8 @@ class Interface(object):
 
         names_label = Label(left_frame, text="Jogadores (um por linha):", font=('times', 12), bg=COLOR, border=5)
         names_label.pack()
-        name_text = Text(left_frame, height=10, width=40, border=5)
-        name_text.pack()
+        self.names_text = Text(left_frame, height=10, width=40, border=5)
+        self.names_text.pack()
         button_frame = Frame(left_frame, border=5, bg=COLOR)
         button_frame.pack()
         name_button = Button(button_frame, text="Inicia rodada", command=self.start_round)
@@ -108,9 +111,15 @@ class Interface(object):
         self.root.mainloop()
 
     def start_round(self):
-        interface = RoundInterface()
-        round = Round(5, 2, interface)
-        round.start()        
+        names = self.__get_names()
+        interface = RoundInterface(names)
+        round = Round(5, 2, names, interface)
+        round.start()
+
+    def __get_names(self):        
+        names_str = self.names_text.get(1.0, END)
+        names = names_str.splitlines()
+        return names
 
 if __name__ == "__main__":
 

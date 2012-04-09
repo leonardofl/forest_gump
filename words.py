@@ -22,10 +22,23 @@ WORDS_FILE = "resources/words"
 
 class Words(object):
 
-    def __init__(self):
-        self.words = self.__retrieve_words_from_file()
+    def __init__(self, names, max_palavras):
         self.count = -1
+        self.words = self.__retrieve_words_from_file()
         random.shuffle(self.words)
+        self.words = self.words[0:max_palavras]
+        selected_names = self.select_names(names)
+        for name, i in zip(selected_names, range(0,2)): # adiciona nomes dos jogadores na lista de palavras
+            self.words[i] = name
+        random.shuffle(self.words)
+
+    def select_names(self, names):
+        """Recebe uma lista de nomes e devolve uma lista com UM ou DOIS desses nomes"""
+        random.shuffle(names)
+        selected = [names[0]]
+        if random.random() > 0.7: # 30% de chances de ter dois nomes
+            selected.append(names[1])
+        return selected
 
     def __retrieve_words_from_file(self):
         """Lê o arquivo resources/words e retorna uma lista"""
