@@ -18,12 +18,17 @@
 
 import gui
 import round
+import os
+
+LISTS_DIR = "resources/lists/"
+
+def __get_available_lists():
+    """Retrieve the names of the files in the lists dir"""
+    lists = os.listdir(LISTS_DIR)    
+    return filter(lambda l: not l[-1]=='~', lists) # discard files ended with '~' (backups)
 
 if __name__ == "__main__":
-
-    interface = gui.Interface()
+    lists = __get_available_lists()
+    interface = gui.Interface(lists)
     interface.start()
 
-#    interface = gui.RoundInterface()
-#    round = round.Round(5, 2, interface)
-#    round.start()

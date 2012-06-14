@@ -81,7 +81,7 @@ class RoundInterface(object):
 
 class Interface(object):
 
-    def __init__(self, lists=['usp', 'musica', 'comp']):
+    def __init__(self, lists=[]):
 
         self.root = Tk()
 

@@ -26,8 +26,6 @@ class Words(object):
     def __init__(self, names, lists, max_palavras):
         """Se lists não é especificado, pega palavras de WORDS_FILE"""
 
-        print 'lists = %s' % lists
-
         self.count = -1
         if lists:
             self.words = []
@@ -37,7 +35,6 @@ class Words(object):
         else:
             self.words = self.__retrieve_words_from_file()
 
-        print self.words
         random.shuffle(self.words)
         self.words = self.words[0:max_palavras]
         selected_names = self.__select_names(names)
