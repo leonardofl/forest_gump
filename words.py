@@ -19,12 +19,25 @@
 import random
 
 WORDS_FILE = "resources/words"
+LISTS_DIR = "resources/lists/"
 
 class Words(object):
 
-    def __init__(self, names, max_palavras):
+    def __init__(self, names, lists, max_palavras):
+        """Se lists não é especificado, pega palavras de WORDS_FILE"""
+
+        print 'lists = %s' % lists
+
         self.count = -1
-        self.words = self.__retrieve_words_from_file()
+        if lists:
+            self.words = []
+            for l in lists:
+                fname = '%s%s' % (LISTS_DIR, l)
+                self.words += self.__retrieve_words_from_file(fname)
+        else:
+            self.words = self.__retrieve_words_from_file()
+
+        print self.words
         random.shuffle(self.words)
         self.words = self.words[0:max_palavras]
         selected_names = self.__select_names(names)
@@ -40,9 +53,9 @@ class Words(object):
             selected.append(names[1])
         return selected
 
-    def __retrieve_words_from_file(self):
-        """Lê o arquivo resources/words e retorna uma lista"""
-        file = open(WORDS_FILE)
+    def __retrieve_words_from_file(self, fname=WORDS_FILE):
+        """Lê arquivo e retorna uma lista"""
+        file = open(fname)
         wds = file.read().splitlines()
         file.close()
         return wds

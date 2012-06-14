@@ -122,23 +122,14 @@ class Interface(object):
         name_button = Button(button_frame, text="Inicia rodada", command=self.start_round)
         name_button.pack()
 
-    def chkbox_checked(self):
-        print 'ahhh'
-        for ix, item in enumerate(self.cbs):
-            self.opt[ix]=(self.checks[ix].get())
-        print self.opt
-
-    def __checked(self):
-        var = self.chv.get()
-        print ("var is %s", str(var))
-
     def start(self):
         self.root.mainloop()
 
     def start_round(self):
         names = self.__get_names()
+        lists = self.__get_selected_lists()
         interface = RoundInterface(names)
-        round = Round(5, 2, names, interface)
+        round = Round(5, 2, names, lists, interface)
         round.start()
 
     def __get_names(self):        
