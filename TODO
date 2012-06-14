@@ -8,5 +8,8 @@ Colocar outras imagens de bandas de rock
 e sortear na hora qual vai usar
 
 BUG:
-quando eu deixo só o cartucho de música,
-o contador não pára!
+quando a quantidade de palavras utilizadas na rodada é menor que MAX_WORDS, relógio não pára
+Isto acontece, por exemplo, quando se seleciona apenas um cartucho muito pequeno.
+
+BUG:
+se a lista de nomes ficar vazia, dá erro.

@@ -23,6 +23,8 @@ from PIL import Image, ImageTk
 from image_retriever import get_image
 from round import Round
 
+import properties
+
 COLOR = 'light salmon'
 
 class RoundInterface(object):
@@ -129,7 +131,7 @@ class Interface(object):
         names = self.__get_names()
         lists = self.__get_selected_lists()
         interface = RoundInterface(names)
-        round = Round(5, 2, names, lists, interface)
+        round = Round(properties.WORDS_PER_ROUND, properties.WORD_TIME_INTERVAL, names, lists, interface)
         round.start()
 
     def __get_names(self):        
