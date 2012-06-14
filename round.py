@@ -18,7 +18,6 @@
 
 import words
 import sched
-import gui
 from threading import Timer, Thread
 
 class Round(object):

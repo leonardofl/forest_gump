@@ -81,9 +81,12 @@ class RoundInterface(object):
 
 class Interface(object):
 
-    def __init__(self):
+    def __init__(self, lists=['usp', 'musica', 'comp']):
 
         self.root = Tk()
+
+        self.lists = lists
+
         self.root.title("Forest Gump")
         master_frame = Frame(self.root, bg=COLOR)
         master_frame.pack()
@@ -96,7 +99,19 @@ class Interface(object):
 
         self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/uncle_sam.jpg"))
         image_label = Label(right_frame, image=self.tkimg, width=400, height=300, bg=COLOR)
-        image_label.pack()
+        image_label.pack(side=RIGHT)
+        lists_frame = Frame(right_frame, bg=COLOR, border=5)
+        lists_frame.pack(side=LEFT)
+
+        lists_label = Label(lists_frame, text="Cartuchos", font=('times', 12), bg=COLOR, border=5)
+        lists_label.pack(side=TOP)
+        self.cbs = []
+        self.cb_values = []
+        for i, l in enumerate(self.lists):
+            self.cb_values.append(IntVar())
+            check = Checkbutton(lists_frame, text=l, bg=COLOR, border=5, var=self.cb_values[i])
+            self.cbs.append(check)
+            check.pack(side=BOTTOM)
 
         names_label = Label(left_frame, text="Jogadores (um por linha):", font=('times', 12), bg=COLOR, border=5)
         names_label.pack()
@@ -106,6 +121,16 @@ class Interface(object):
         button_frame.pack()
         name_button = Button(button_frame, text="Inicia rodada", command=self.start_round)
         name_button.pack()
+
+    def chkbox_checked(self):
+        print 'ahhh'
+        for ix, item in enumerate(self.cbs):
+            self.opt[ix]=(self.checks[ix].get())
+        print self.opt
+
+    def __checked(self):
+        var = self.chv.get()
+        print ("var is %s", str(var))
 
     def start(self):
         self.root.mainloop()
@@ -121,9 +146,10 @@ class Interface(object):
         names = names_str.splitlines()
         return names
 
-if __name__ == "__main__":
-
-    gui = RoundInterface()
-    gui.start()
-
+    def __get_selected_lists(self):
+        selected = []
+        for i, l in enumerate(self.lists):
+            if self.cb_values[i].get():
+                selected.append(l) 
+        return selected
 
