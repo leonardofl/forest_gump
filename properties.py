@@ -6,4 +6,4 @@
 WORDS_PER_ROUND = 10
 
 # quanto tempo cada palavra fica na tela
-WORD_TIME_INTERVAL = 2
+WORD_TIME_INTERVAL = 6
