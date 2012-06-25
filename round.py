@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import words
+import words, figures
 import sched
 from threading import Timer, Thread
 
@@ -28,16 +28,21 @@ class Round(object):
         self.names = names # nomes dos jogadores
         self.interface = interface # interface gráfica
         self.words = words.Words(names, lists, max_palavras)
+        self.figures = {} # key is word, and value figure path
         self.count = 0
 
     def start(self):
         Timer(self.interval, self.interface.start_clock, ()).start()
         Timer(self.interval, self.refresh, ()).start()
         self.interface.start()
+        #self._load_figures() # TODO ???
 
     def refresh(self):
-        word = self.words.next() 
-        self.interface.print_word(word)
+        word = self.words.next()
+        img_path = None
+        if self.figures.has_key(word):
+            img_path = self.figures[word] 
+        self.interface.print_word(word, img_path)
         self.count += 1
         if (self.count < self.max_palavras):
            Timer(self.interval, self.refresh, ()).start() 
@@ -46,6 +51,10 @@ class Round(object):
 
     def finish(self):
         self.interface.stop()
+
+    def _load_figures(self):
+        for w in self.words:
+            self.figures[w] = figures.get_image(w)
 
 if __name__ == "__main__":
     

@@ -22,7 +22,6 @@ from PIL import Image, ImageTk
 
 from round import Round
 
-import figures
 import properties
 
 COLOR = 'light salmon'
@@ -65,9 +64,8 @@ class RoundInterface(object):
     def stop_clock(self):
         self.clocking = False
 
-    def print_word(self, word):
-        self.word_label.configure(text=word)
-        img_path = figures.get_image(word)        
+    def print_word(self, word, img_path):
+        self.word_label.configure(text=word)      
         if not img_path:
             img_path = "resources/img/nothing.png"
         if word in self.names:
