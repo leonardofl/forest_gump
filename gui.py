@@ -20,9 +20,9 @@ from Tkinter import *
 from threading import Timer
 from PIL import Image, ImageTk
 
-from image_retriever import get_image
 from round import Round
 
+import figures
 import properties
 
 COLOR = 'light salmon'
@@ -67,7 +67,7 @@ class RoundInterface(object):
 
     def print_word(self, word):
         self.word_label.configure(text=word)
-        img_path = get_image(word)        
+        img_path = figures.get_image(word)        
         if not img_path:
             img_path = "resources/img/nothing.png"
         if word in self.names:
