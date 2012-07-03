@@ -11,3 +11,6 @@ Jogadores podem adicionar novas palavras no arquivo resources/words
 e novas imagens na pasta resources/img
 O nome da imagem deve corresponder à palavra, mas com "_" no lugar de " ", mantendo-se os acentos
 A resolução da imagem não deve exceder 400 na largura ou 300 na altura
+
+Vídeo de demonstração:
+http://www.youtube.com/watch?v=-znChGXfwnI&feature=plcp
