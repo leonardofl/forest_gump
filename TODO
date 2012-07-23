@@ -1,12 +1,17 @@
 * Imagem da Wikipedia
-Se não tiver imagem na pasta, procura imagem na wikipedia
-e deixa salva
-(ideia doida, haha!)
+Se não tiver imagem na pasta, procura imagem na wikipedia e deixa salva
 Baixar imagem 'Brasil' tava funcionando e agora não tá mais
+
+* Enquanto estiver baixando imagem,
+deixar mensagem "carregando".
+Depois mudar pra "Let's rock!"
 
 * Let's rock
 Colocar outras imagens de bandas de rock
 e sortear na hora qual vai usar
+
+* Se não achar na wikipedia PT, 
+procurar na wikipedia EN
 
 BUG:
 quando a quantidade de palavras utilizadas na rodada é menor que MAX_WORDS, relógio não pára

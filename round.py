@@ -16,26 +16,26 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import unicode_literals
 import words, figures
 import sched
 from threading import Timer, Thread
 
 class Round(object):
 
-    def __init__(self, max_palavras, interval, names, lists, interface):
+    def __init__(self, max_palavras, interval, names, lists, interface, img_from_wiki):
         self.max_palavras = max_palavras # quantas palavras por rodada
         self.interval = interval # quantos segundos por palavra
         self.names = names # nomes dos jogadores
         self.interface = interface # interface gráfica
+        self.img_from_wiki = img_from_wiki # boolean que indica se imagens vão ser carregadas da wikipedia
         self.words = words.Words(names, lists, max_palavras)
         self.figures = {} # key is word, and value figure path
         self.count = 0
 
     def start(self):
-        Timer(self.interval, self.interface.start_clock, ()).start()
-        Timer(self.interval, self.refresh, ()).start()
+        RoundLoader(self).start()
         self.interface.start()
-        #self._load_figures() # TODO ???
 
     def refresh(self):
         word = self.words.next()
@@ -52,13 +52,29 @@ class Round(object):
     def finish(self):
         self.interface.stop()
 
-    def _load_figures(self):
-        for w in self.words:
-            self.figures[w] = figures.get_image(w)
+    def load_figures(self):
+        for w in self.words.words:
+            self.figures[w] = figures.get_image(w, self.img_from_wiki)
+        print 'Figures loaded'
+
+class RoundLoader(Thread):
+
+    def __init__(self, round):
+        """round -- Round object"""
+        Thread.__init__(self)
+        self.round = round
+
+    def run(self):
+        self.round.load_figures() 
+        Timer(self.round.interval, self.round.interface.start_clock, ()).start()
+        Timer(self.round.interval, self.round.refresh, ()).start()
+        
 
 if __name__ == "__main__":
     
     print "Let's rock!"
     round = Round(10, 4)
     round.start()
+
+
 

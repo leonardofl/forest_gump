@@ -16,10 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import unicode_literals
 import random
 
-WORDS_FILE = "resources/words"
-LISTS_DIR = "resources/lists/"
+WORDS_FILE = 'resources/words'
+LISTS_DIR = 'resources/lists/'
+
+FILE_ENCODING = 'utf-8'
 
 class Words(object):
 
@@ -37,6 +40,9 @@ class Words(object):
 
         random.shuffle(self.words)
         self.words = self.words[0:max_palavras]
+
+        self.words = map(lambda w: unicode(w, FILE_ENCODING), self.words) # deixa tudo unicode
+
         selected_names = self.__select_names(names)
         for name, i in zip(selected_names, range(0,2)): # adiciona nomes dos jogadores na lista de palavras
             self.words[i] = name

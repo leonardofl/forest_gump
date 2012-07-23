@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import unicode_literals
 import re
 import sys
 import urllib2
@@ -46,6 +47,7 @@ def get_image(word, wiki=False):
             except:
                 return None
             if img_url:
+                img_url = unicode(img_url)
                 path = folder + word + _ext(img_url)
                 download(img_url, path)
                 return path
@@ -67,6 +69,7 @@ def download(img_url, path):
     path: the absolute path to the image, including the image name
     """
     # todo extensão da imagem
+    print "downloading " + img_url
     request = urllib2.Request(img_url, headers={'User-Agent' : "Magic Browser"})
     data = urllib2.urlopen(request).read()
     f = open(path, 'w')

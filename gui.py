@@ -16,6 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import unicode_literals
 from Tkinter import *
 from threading import Timer
 from PIL import Image, ImageTk
@@ -129,15 +130,20 @@ class Interface(object):
         names = self.__get_names()
         lists = self.__get_selected_lists()
         interface = RoundInterface(names)
-        round = Round(properties.WORDS_PER_ROUND, properties.WORD_TIME_INTERVAL, names, lists, interface)
+        words_per_round = properties.WORDS_PER_ROUND
+        word_time_interval = properties.WORD_TIME_INTERVAL
+        img_from_wiki = properties.LOAD_IMAGES_FROM_WIKIPEDIA
+        round = Round(words_per_round, word_time_interval, names, lists, interface, img_from_wiki)
         round.start()
 
-    def __get_names(self):        
+    def __get_names(self):   
+        """Retrieve players names from interface"""     
         names_str = self.names_text.get(1.0, END)
         names = names_str.splitlines()
         return names
 
     def __get_selected_lists(self):
+        """Retrieve selected lists from interface (checkbox checked)"""
         selected = []
         for i, l in enumerate(self.lists):
             if self.cb_values[i].get():
