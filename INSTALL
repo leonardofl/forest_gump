@@ -1,8 +1,0 @@
-Módulos do Python necessárias:
-
-*   Tkinter
-    No Ubuntu ele pode ser instalado com "apt-get install python-tk"
-
-*   ImageTk
-    No Ubuntu ele pode ser instalado com "apt-get install python-imaging-tk"
-

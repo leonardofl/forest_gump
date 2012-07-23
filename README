@@ -11,6 +11,14 @@ Jogadores podem adicionar novas palavras no arquivo resources/words
 e novas imagens na pasta resources/img
 O nome da imagem deve corresponder à palavra, mas com "_" no lugar de " ", mantendo-se os acentos
 A resolução da imagem não deve exceder 400 na largura ou 300 na altura
+Caso não haja imagem correspondente na pasta,
+o programa procurará uma imagem na Wikipedia.
 
 Vídeo de demonstração:
 http://www.youtube.com/watch?v=-znChGXfwnI&feature=plcp
+
+== Executando ==
+
+Requisitos: Python 2.7
+Execute o script setup.sh para instalar as biblitoecas necessárias
+Para executar o jogo: $python game.py
