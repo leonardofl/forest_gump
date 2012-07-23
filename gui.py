@@ -44,7 +44,7 @@ class RoundInterface(object):
         self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/kiss.jpg"))
         self.image_label = Label(frame, image=self.tkimg, width=400, height=300, bg=COLOR)
         self.image_label.pack()
-        self.word_label = Label(frame, text="Let's rock!", font=('times', 100, 'bold'), bg=COLOR)
+        self.word_label = Label(frame, text='Carregado imagens', font=('times', 100, 'bold'), bg=COLOR)
         self.word_label.pack()
         self.clock_label = Label(frame, text=self.clock, font=('times', 70, 'bold'), bg=COLOR)
         self.clock_label.pack()
@@ -75,10 +75,13 @@ class RoundInterface(object):
         self.image_label.configure(image=self.tkimg)
 
     def stop(self):
-        self.word_label.configure(text="ACABOU!")
-        self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/stop.jpg"))
+        self.word_label.configure(text='ACABOU!')
+        self.tkimg = ImageTk.PhotoImage(Image.open('resources/img/stop.jpg'))
         self.image_label.configure(image=self.tkimg)
         self.stop_clock()
+
+    def rock(self):
+        self.word_label.configure(text="Let's rock!") 
 
 class Interface(object):
 

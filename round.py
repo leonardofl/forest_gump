@@ -56,6 +56,7 @@ class Round(object):
         for w in self.words.words:
             self.figures[w] = figures.get_image(w, self.img_from_wiki)
         print 'Figures loaded'
+        self.interface.rock()
 
 class RoundLoader(Thread):
 
