@@ -7,9 +7,7 @@ Tá pegando a imagem pequena, e não a foto maior
 Colocar outras imagens de bandas de rock
 e sortear na hora qual vai usar
 
-* Se não achar na wikipedia PT, 
-procurar na wikipedia EN
-
+* Detectar páginas de desambiguação
 
 BUG:
 quando a quantidade de palavras utilizadas na rodada é menor que MAX_WORDS, relógio não pára

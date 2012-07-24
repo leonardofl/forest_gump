@@ -25,7 +25,8 @@ from BeautifulSoup import BeautifulSoup
 
 BASE_URL = 'http://%s.wikipedia.org/wiki/%s'
 
-LANGUAGE = 'pt'
+LANGUAGE_PT = 'pt'
+LANGUAGE_EN = 'en'
 
 import glob
 
@@ -80,16 +81,22 @@ def from_wikipedia(word):
     """Returns the link of a figure in the verbet of 'word' (a string)
     For example, passing word='cavalo' it is expected to get a horse figure
     If no figure is found, None is returned
-    By default the words are searched in the wikipedia in Portuguse
+    By default the words are searched in the Wikipedia in Portuguse; the second try is the English Wikipedia
     To change the language, set the language.LANGUAGE variable
     """ 
-    url = BASE_URL % (LANGUAGE, word)
     try:
+        url = BASE_URL % (LANGUAGE_PT, word)
         request = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"})
         site = urllib2.urlopen(request)
     except:
-        print '%s does not exist in the wikipedia-%s' % (word, LANGUAGE)    
-        return None
+        print '%s does not exist in the wikipedia-%s' % (word, LANGUAGE_PT)
+        try: 
+            url = BASE_URL % (LANGUAGE_EN, word)   
+            request = urllib2.Request(url, headers={'User-Agent' : "Magic Browser"})
+            site = urllib2.urlopen(request)
+        except:
+            print '%s does not exist in the wikipedia-%s' % (word, LANGUAGE_EN)
+            return None
     soup = BeautifulSoup(site)
     img_src = soup.find("a", { "class" : "image" }).findChild('img').get('src')
     return 'http://' + img_src.replace('//', '')
