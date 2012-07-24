@@ -24,6 +24,7 @@ from PIL import Image, ImageTk
 from round import Round
 
 import properties
+import figures
 
 COLOR = 'light salmon'
 
@@ -41,7 +42,8 @@ class RoundInterface(object):
         frame.pack()
         title = Label(frame, text="Forest Gump, o contador de histórias", font=('times', 50, 'bold'), bg=COLOR)
         title.pack()
-        self.tkimg = ImageTk.PhotoImage(Image.open("resources/img/kiss.jpg"))
+        rock_path = figures.rock()
+        self.tkimg = ImageTk.PhotoImage(Image.open(rock_path))
         self.image_label = Label(frame, image=self.tkimg, width=400, height=300, bg=COLOR)
         self.image_label.pack()
         self.word_label = Label(frame, text='Carregado imagens', font=('times', 100, 'bold'), bg=COLOR)

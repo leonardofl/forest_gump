@@ -21,9 +21,13 @@ import re
 import sys
 import urllib2
 import urllib
+import os
+import random
 from BeautifulSoup import BeautifulSoup
 
 BASE_URL = 'http://%s.wikipedia.org/wiki/%s'
+
+ROCK_FOLDER = 'resources/rock/'
 
 LANGUAGE_PT = 'pt'
 LANGUAGE_EN = 'en'
@@ -101,12 +105,13 @@ def from_wikipedia(word):
     img_src = soup.find("a", { "class" : "image" }).findChild('img').get('src')
     return 'http://' + img_src.replace('//', '')
 
-if __name__ == "__main__":
-    print get_image(sys.argv[1], True)
-#    print get_image("escola")
-#    print get_image("python")
-#    print get_image("maçã")
-#    print get_image("quinta e breja")
-#    print get_image("naotem")
+def rock():
+    """Pega uma imagem da pasta rock aleatoriamente"""
+    figures = os.listdir(ROCK_FOLDER)
+    random.shuffle(figures)
+    return ROCK_FOLDER + figures[0]
 
+if __name__ == "__main__":
+#    print get_image(sys.argv[1], True)
+    print rock()
 
