@@ -3,11 +3,8 @@
 * http://pt.wikipedia.org/wiki/Paulo_Maluf
 Tá pegando a imagem pequena, e não a foto maior
 
-* Let's rock
-Colocar outras imagens de bandas de rock
-e sortear na hora qual vai usar
-
 * Detectar páginas de desambiguação
+E navegar nelas até achar uma com alguma imagem!
 
 BUG:
 quando a quantidade de palavras utilizadas na rodada é menor que MAX_WORDS, relógio não pára
